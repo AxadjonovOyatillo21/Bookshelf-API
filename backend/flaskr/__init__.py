@@ -35,12 +35,14 @@ def create_app(test_config=None):
   def get_books():
     selection = Book.query.order_by(Book.id).all()
     current_books = paginate_books(request, selection)
-
-    return jsonify({
-      'success': 'True',
-      'books': current_books,
-      'total_books': len(Book.query.all())
-    })
+    if len(current_books) > 0:
+      return jsonify({
+        'success': 'True',
+        'books': current_books,
+        'total_books': len(Book.query.all())
+      })
+    else:
+      abort(404)
      
   @app.route('/books/search', methods=['POST'])
   def search_books():
@@ -53,6 +55,23 @@ def create_app(test_config=None):
       'total_books': len(Book.query.all())
     })
 
+  @app.route('/books/<int:book_id>', methods=['GET'])
+  def retrive_book(book_id):
+
+    try:
+      book = Book.query.get_or_404(book_id)
+      if book is None:
+        abort(404)
+      return jsonify({
+        'success': 'True',
+        'id': book.id,
+        'title': book.title,
+        'author': book.author,
+        'rating': book.rating
+      })
+    except:
+      abort(400)
+
   @app.route('/books/<int:book_id>', methods=['PATCH'])
   def update_book(book_id):
 
@@ -64,11 +83,16 @@ def create_app(test_config=None):
         abort(404)
       if 'rating' in data:
         book.rating = int(data['rating']) 
+      if 'title' in data:
+        book.title = data['title']
+      if 'author' in data:
+        book.author = data['author']
+     
       book.update()
 
       return jsonify({
         'success': 'True',
-        "id": book.id
+        'id': book.id
       })
     except:
       abort(400)
@@ -120,7 +144,7 @@ def create_app(test_config=None):
     return jsonify({
       'success': 'False',
       'error': 404,
-      'message': 'Not found' 
+      'message': 'Resource Not found' 
     }), 404
   
   @app.errorhandler(400)
