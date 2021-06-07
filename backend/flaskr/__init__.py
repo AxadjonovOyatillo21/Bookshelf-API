@@ -37,40 +37,49 @@ def create_app(test_config=None):
     current_books = paginate_books(request, selection)
     if len(current_books) > 0:
       return jsonify({
-        'success': 'True',
+        'success': True,
         'books': current_books,
         'total_books': len(Book.query.all())
       })
     else:
-      abort(404)
+      return jsonify({
+        'success': False,
+        'message': 'books not found'
+      })
      
   @app.route('/books/search', methods=['POST'])
   def search_books():
-    search_term = request.get_json()['search']
-    selection = Book.query.filter(Book.title.ilike(f'%{search_term}%'))
-    current_books = paginate_books(request, selection)
-    return jsonify({
-      'success': 'True',
-      'books': current_books,
-      'total_books': len(Book.query.all())
-    })
+    if request.get_json():
+      if 'search' in request.get_json():
+        search_term = request.get_json()['search']
+        selection = Book.query.filter(Book.title.ilike(f'%{search_term}%'))
+        current_books = paginate_books(request, selection)
+        return jsonify({
+          'success': True,
+          'books': current_books,
+          'total_books': len(Book.query.all())
+        })
+      else:
+        abort(400)
+    else:
+      abort(400)
 
   @app.route('/books/<int:book_id>', methods=['GET'])
   def retrive_book(book_id):
-
-    try:
-      book = Book.query.get_or_404(book_id)
-      if book is None:
-        abort(404)
+    book = Book.query.get(book_id)
+    if book is not None:
       return jsonify({
-        'success': 'True',
+        'success': True,
         'id': book.id,
         'title': book.title,
         'author': book.author,
         'rating': book.rating
       })
-    except:
-      abort(400)
+    else:
+      return jsonify({
+        'success': False,
+        'message': 'books not found'
+      })
 
   @app.route('/books/<int:book_id>', methods=['PATCH'])
   def update_book(book_id):
@@ -91,7 +100,7 @@ def create_app(test_config=None):
       book.update()
 
       return jsonify({
-        'success': 'True',
+        'success': True,
         'id': book.id
       })
     except:
@@ -107,13 +116,16 @@ def create_app(test_config=None):
       current_books = paginate_books(request, selection)
 
       return jsonify({
-        'success': 'True',
+        'success': True,
         'deleted': book.id,
         'books': current_books,
         'total_books': len(Book.query.all())
       })
     except:
-      abort(400)
+      return jsonify({
+        'success': False,
+        'message': 'deleting was unseccussful'
+      })
 
 
   @app.route('/books', methods=['POST'])
@@ -131,7 +143,7 @@ def create_app(test_config=None):
       current_books = paginate_books(request, selection)
 
       return jsonify({
-        'success': 'True',
+        'success': True,
         'created': new_book.id, 
         'books': current_books,
         'total_books': len(Book.query.all())
@@ -142,7 +154,7 @@ def create_app(test_config=None):
   @app.errorhandler(404)
   def not_found(error):
     return jsonify({
-      'success': 'False',
+      'success': False,
       'error': 404,
       'message': 'Resource Not found' 
     }), 404
@@ -150,7 +162,7 @@ def create_app(test_config=None):
   @app.errorhandler(400)
   def bad_request(error):
     return jsonify({
-      'success': 'False',
+      'success': False,
       'error': 400,
       'message': 'Bad request' 
     }), 400
@@ -158,7 +170,7 @@ def create_app(test_config=None):
   @app.errorhandler(405)
   def method_not_allowed(error):
     return jsonify({
-      'success': 'False',
+      'success': False,
       'error': 405,
       'message': 'Method not allowed' 
     }), 405
@@ -166,7 +178,7 @@ def create_app(test_config=None):
   @app.errorhandler(422)
   def unprocessable_entity(error):
     return jsonify({
-      'success': 'False',
+      'success': False,
       'error': 422,
       'message': 'Unprocessable Entity' 
     }), 422
