@@ -218,7 +218,165 @@ The API will return three error type when requests: <br>
 
             ⚠️ "rating" parameter is not required, by default its value equals to zero.
             If "rating" not zero, you can include rating parameter to JSON data
-            
+
+        * Response:
+        ```
+            {
+                "error": 400,
+                "message": "bad request",
+                "success": false
+            }
+        ```
+
+    * If you enter the book_id to url, you get 405 error with message 'method not allowed'
+    * Example:
+        * Request: ``` POST/ http://127.0.0.1:5000/books/1 ```
+            * Request body:
+            ```
+                {
+                    "title": "The Great Alone",
+                    "author": "Kristin Hannah",
+                    "rating": "4"
+                }
+            ```
+        * Response:
+        ```
+            {
+                "error": 405,
+                "message": "method not allowed",
+                "success": false
+            }
+        ```
+
+## PATCH /books/{book_id}
+* ### General:
+    * You can use this endpoint to update the book 
+    * You should enter of id off book in endpoint
+    * Your should send Request with method PATCH should include JSON data
+    * Or you request can be empty (if request body empty, the book will not be updated)
+    * Then API responses JSON data which includes:
+    ```
+        "id" - the id of updated book
+        "success" - True 
+    ```
+* ### Example:
+    * Update only "rating"
+        * Request: ``` PATCH/ http://127.0.0.1:5000/2 ```
+            * Request body:
+            ```
+                {
+                    "rating": "1"
+                }
+            ```
+            updates "rating" of the book which id 2
+
+        * Response:
+        ```
+            {
+                "id": 2,
+                "success": true
+            }    
+        ```
+        ⚠️ You can see updates by sending GET request to endpoint /books
+        or by sending GET request to endpoint /books/2
+
+
+    * Update only "title"
+        * Request: ``` PATCH/ http://127.0.0.1:5000/2 ```
+            * Request body:
+            ```
+                {
+                    "title": "New title"
+                }
+            ```
+            updates "title" of the book which id 2
+
+        * Response:
+        ```
+            {
+                "id": 2,
+                "success": true
+            }    
+        ```
+        ⚠️ You can see updates by sending GET request to endpoint /books
+        or by sending GET request to endpoint /books/2
+
+
+    * Update only "author"
+        * Request: ``` PATCH/ http://127.0.0.1:5000/2 ```
+            * Request body:
+            ```
+                {
+                    "title": "New author"
+                }
+            ```
+            updates "author" of the book which id 2
+
+        * Response:
+        ```
+            {
+                "id": 2,
+                "success": true
+            }    
+        ```
+        ⚠️ You can see updates by sending GET request to endpoint /books
+        or by sending GET request to endpoint /books/2
+
+
+    * Fully update
+        * Request: ``` PATCH/ http://127.0.0.1:5000/2 ```
+            * Request body:
+            ```
+                {
+                    "title": "New title",
+                    "author": "New author",
+                    "rating": "1"
+                }
+            ```
+            fully updates the book which id 2
+
+        * Response:
+        ```
+            {
+                "id": 2,
+                "success": true
+            }    
+        ```
+        ⚠️ You can see updates by sending GET request to endpoint /books
+        or by sending GET request to endpoint /books/2
+
+
+    * Not update:
+        * Request: ``` PATCH/ http://127.0.0.1:5000/2 ```
+            * Request body:
+            ```
+                {}
+            ```
+            not updates the book with id 2
+
+        * Response:
+        ```
+            {
+                "id": 2,
+                "success": true
+            }    
+        ```
+        ⚠️ You can see updates by sending GET request to endpoint /books
+        or by sending GET request to endpoint /books/2
+
+* ### ⚠️ Warning
+    * If you enter wrong value to parametres, for example "rating": "new_rating", "rating" parameter is Integer, and you can't enter wrong value, it raises TypeError and then API responses 400 error with message 'bad request'
+    * Example 
+        * Request: ``` PATCH/ http://127.0.0.1:5000/2 ```
+            * Request body:
+            ```
+                {
+                    "title": "123",
+                    "author": "001"
+                }
+            ```
+            in here, "title" and "author" should be string not an integer
+
         * Response:
         ```
             {

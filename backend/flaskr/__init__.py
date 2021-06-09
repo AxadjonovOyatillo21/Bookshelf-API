@@ -91,11 +91,20 @@ def create_app(test_config=None):
       if book is None:
         abort(404)
       if 'rating' in data:
-        book.rating = int(data['rating']) 
+        if data['rating'].isdigit():
+          book.rating = int(data['rating']) 
+        else:
+          abort(400)
       if 'title' in data:
-        book.title = data['title']
+        if not data['title'].isdigit():
+          book.title = data['title']
+        else:
+          abort(400)
       if 'author' in data:
-        book.author = data['author']
+        if not data['author'].isdigit():
+          book.author = data['author']
+        else:
+          abort(400)
      
       book.update()
 
@@ -138,17 +147,20 @@ def create_app(test_config=None):
     
     try:
       if new_title and new_author:
-        new_book = Book(title=new_title, author=new_author, rating=new_rating)
-        new_book.insert()
-        selection = Book.query.order_by(Book.id).all()
-        current_books = paginate_books(request, selection)
+        if not new_title.isdigit() and not new_author.isdigit():
+          new_book = Book(title=new_title, author=new_author, rating=new_rating)
+          new_book.insert()
+          selection = Book.query.order_by(Book.id).all()
+          current_books = paginate_books(request, selection)
 
-        return jsonify({
-          'success': True,
-          'created': new_book.id, 
-          'books': current_books,
-          'total_books': len(Book.query.all())
-        })
+          return jsonify({
+            'success': True,
+            'created': new_book.id, 
+            'books': current_books,
+            'total_books': len(Book.query.all())
+          })
+        else:
+          abort(400)
       else: 
         abort(400)
     except:
