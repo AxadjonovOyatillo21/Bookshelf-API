@@ -28,17 +28,17 @@ The API will return three error type when requests: <br>
     ### Example
     *Request:* ```http://127.0.0.1:5000/books 
     *Response*:
-        ```
-            {
-                "books": [
-                    {
-                        "author": "Keyl Nyuport",
-                        "id": 10,
-                        "rating": 1,
-                        "title": "Diqqat"
-                    }
-                ],
-                "success": true,
-                "total_books": 1
-            }
-        ```
+    ```
+        {
+            "books": [
+                {
+                    "author": "Keyl Nyuport",
+                    "id": 10,
+                    "rating": 1,
+                    "title": "Diqqat"
+                }
+            ],
+            "success": true,
+            "total_books": 1
+        }
+    ```
