@@ -50,7 +50,7 @@ The API will return three error type when requests: <br>
     
 <br>
 
-## GET /books/{book_id}
+## <span style="color: green"> GET /books/{book_id} </span>
 * ### General:
     * This endpoint returns specific book
 * ### Example
@@ -125,4 +125,5 @@ The API will return three error type when requests: <br>
                     "message": "bad request",
                     "success": false
                 }
-            ```            
+            ```      
+      
