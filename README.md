@@ -63,9 +63,9 @@ kill <PID>
 Verify that the database user in the `/backend/books.psql`, `/backend/models.py`, and `/backend/test_flaskr.py` files must be either the `student` or `postgres` (default username). FYI, the classroom workspace uses the `student`/`student` user credentials, whereas, the local implementation can use the dafault `postgres` user without a password as well. (See the `/backend/setup.sql` for more details!)
 
 2. **Create the database and a user**<br>
-In your terminal, navigate to the */nd0044-c2-API-Development-and-Documentation-exercises/1_Requests_Starter/backend/* directory, and run the following:
+In your terminal, navigate to the *Bookshelf-API* directory, and run the following:
 ```bash
-cd nd0044-c2-API-Development-and-Documentation-exercises/1_Requests_Starter/backend
+cd Bookshelf-API/backend
 # Connect to the PostgreSQL
 psql postgres
 #View all databases
