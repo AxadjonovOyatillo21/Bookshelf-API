@@ -49,7 +49,7 @@ The API will return three error type when requests: <br>
         }
     ```
 
-    * To get books from other pages: ` http://127.0.0.1:5000/book?page=2 `
+    * To get books from other pages: ` http://127.0.0.1:5000/books?page=2 `
     ## /book?page=2
     This endpoint returns all books from the second page, if second page doesn't exists it will return books not found
     
