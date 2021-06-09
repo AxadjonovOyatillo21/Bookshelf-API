@@ -136,6 +136,14 @@ The API will return three error type when requests: <br>
 * ### General:
     * In this endpoint you can create a new book.
     * You should send request with method post. Your request should include JSON data about new book
+
+
+    * JSON data should include:
+    ```
+        "author" - book author
+        "title" - book title
+        "rating" - book rating
+    ```
     * Then API responses data which includes:
     ```
         "books" - all books list,
@@ -143,14 +151,8 @@ The API will return three error type when requests: <br>
         "success" - True,
         "total_books" - number of all books
     ```
-    
-    * JSON data should include:
-    ```
-        "author" - book author
-        "title" - book title
-        "rating" - book rating
-    ```
 
+    
 * ### Example:
     * Request: ``` POST/ http://127.0.0.1:5000/books ```
         * Request body:
