@@ -29,7 +29,7 @@ The API will return three error type when requests: <br>
 * ### Example
     * Request: ```http://127.0.0.1:5000/books``` <br>
     * Response:
-    ```
+    * ```
         {
             "books": [
                 {
