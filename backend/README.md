@@ -128,3 +128,4 @@ The API will return three error type when requests: <br>
                 }
             ```      
       
+<span style="color:blue">some *blue* text</span>.
