@@ -29,7 +29,7 @@ The API will return three error type when requests: <br>
 * ### Example
     * Request: ```http://127.0.0.1:5000/books``` <br>
     * Response:
-    * ```
+    ```
         {
             "books": [
                 {
@@ -50,5 +50,18 @@ The API will return three error type when requests: <br>
     
 <br>
 
-## GET /books/id
+## GET /books/{book_id}
 * ### General:
+    * This endpoint returns specific book
+* ### Example
+    * Requests: ``` https://127.0.0.1:/5000/books/10 - this endpoint returns book which id is 10
+    * Response:
+    ```
+        {
+            "author": "Keyl Nyuport",
+            "id": 10,
+            "rating": 1,
+            "success": true,
+            "title": "Diqqat"
+        }
+    ```
