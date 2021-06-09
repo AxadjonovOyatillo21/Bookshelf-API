@@ -194,22 +194,31 @@ The API will return three error type when requests: <br>
                 {
                     "title": "no_title"
                 }
-            ``` - in this request required "author" parameter
-            or 
+            ``` 
+            - in this request required "author" parameter
+
+            or
+
             ```
                 {
                     "title": "title_of_book",
                     "author": ""
                 }
-            ``` - in this request "author" parameter empty
+            ``` 
+            - in this request "author" parameter empty
+
             or 
+
             ```
                 {
                     "author": "author_of_book"
                 }
-            ``` - "title" parameter required
+            ``` 
+            - "title" parameter required
+
             ⚠️ "rating" parameter is not required, by default its value equals to zero.
             If "rating" not zero, you can include rating parameter to JSON data
+            
         * Response:
         ```
             {
