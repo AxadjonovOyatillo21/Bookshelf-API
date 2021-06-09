@@ -135,19 +135,22 @@ def create_app(test_config=None):
     new_title = data.get('title')
     new_author = data.get('author')
     new_rating = data.get('rating')
-
+    
     try:
-      new_book = Book(title=new_title, author=new_author, rating=new_rating)
-      new_book.insert()
-      selection = Book.query.order_by(Book.id).all()
-      current_books = paginate_books(request, selection)
+      if new_title and new_author:
+        new_book = Book(title=new_title, author=new_author, rating=new_rating)
+        new_book.insert()
+        selection = Book.query.order_by(Book.id).all()
+        current_books = paginate_books(request, selection)
 
-      return jsonify({
-        'success': True,
-        'created': new_book.id, 
-        'books': current_books,
-        'total_books': len(Book.query.all())
-      })
+        return jsonify({
+          'success': True,
+          'created': new_book.id, 
+          'books': current_books,
+          'total_books': len(Book.query.all())
+        })
+      else: 
+        abort(400)
     except:
       abort(400)
 

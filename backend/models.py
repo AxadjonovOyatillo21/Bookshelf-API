@@ -27,8 +27,8 @@ class Book(db.Model):
   __tablename__ = 'books'
 
   id = Column(Integer, primary_key=True)
-  title = Column(String)
-  author = Column(String)
+  title = Column(String, nullable=False)
+  author = Column(String, nullable=False)
   rating = Column(Integer, default=0)
 
   def __init__(self, title, author, rating):

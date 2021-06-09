@@ -38,14 +38,14 @@ The API will return three error type when requests: <br>
         {
             "books": [
                 {
-                    "author": "Keyl Nyuport",
-                    "id": 10,
-                    "rating": 1,
-                    "title": "Diqqat"
+                    "author": "Kel Newport",
+                    "id": 1,
+                    "rating": 6,
+                    "title": "Attention"
                 }
             ],
             "success": true,
-            "total_books": 1
+            "total_books": 2
         }
     ```
 
@@ -59,15 +59,15 @@ The API will return three error type when requests: <br>
 * ### General:
     * This endpoint returns specific book
 * ### Example
-    * Requests: ``` https://127.0.0.1:/5000/books/10 ``` - this endpoint returns book which id is 10
+    * Requests: ``` https://127.0.0.1:/5000/books/1 ``` - this endpoint returns book which id is 10
     * Response:
     ```
         {
-            "author": "Keyl Nyuport",
-            "id": 10,
-            "rating": 1,
+            "author": "Kel Newport",
+            "id": 1,
+            "rating": 6,
             "success": true,
-            "title": "Diqqat"
+            "title": "Attention"
         }
     ```
 
@@ -91,7 +91,7 @@ The API will return three error type when requests: <br>
         * Request body:
         ``` 
             {
-                "search": "diqqat"
+                "search": "attention"
             }
         ```
         * Response:
@@ -99,10 +99,10 @@ The API will return three error type when requests: <br>
             {
                 "books": [
                     {
-                        "author": "Keyl Nyuport",
-                        "id": 10,
-                        "rating": 1,
-                        "title": "Diqqat"
+                        "author": "Kel Newport",
+                        "id": 1,
+                        "rating": 6,
+                        "title": "Attention"
                     }
                 ],
                 "success": true,
@@ -152,7 +152,7 @@ The API will return three error type when requests: <br>
         "total_books" - number of all books
     ```
 
-    
+
 * ### Example:
     * Request: ``` POST/ http://127.0.0.1:5000/books ```
         * Request body:
@@ -168,21 +168,53 @@ The API will return three error type when requests: <br>
         {
             "books": [
                 {
-                    "author": "Keyl Nyuport",
-                    "id": 10,
-                    "rating": 1,
-                    "title": "Diqqat"
+                    "author": "Kel Newport",
+                    "id": 1,
+                    "rating": 6,
+                    "title": "Attention"
                 },
                 {
                     "author": "Kristin Hannah",
-                    "id": 31,
+                    "id": 2,
                     "rating": 4,
                     "title": "The Great Alone"
                 }
             ],
-            "created": 31,
             "success": true,
             "total_books": 2
         }
     ```
 
+* ### ⚠️ Warning
+    * If in your request body, in JSON data not includes one of required parametres, API responses 400 error with message 'bad request'
+    * Example:
+        * Request ``` POST/ http://127.0.0.1:5000/books ```
+            * Request body:
+            ```
+                {
+                    "title": "no_title"
+                }
+            ``` - in this request required "author" parameter
+            or 
+            ```
+                {
+                    "title": "title_of_book",
+                    "author": ""
+                }
+            ``` - in this request "author" parameter empty
+            or 
+            ```
+                {
+                    "author": "author_of_book"
+                }
+            ``` - "title" parameter required
+            ⚠️ "rating" parameter is not required, by default its value equals to zero.
+            If "rating" not zero, you can include rating parameter to JSON data
+        * Response:
+        ```
+            {
+                "error": 400,
+                "message": "bad request",
+                "success": false
+            }
+        ```
