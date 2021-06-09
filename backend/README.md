@@ -25,6 +25,7 @@ The API will return three error type when requests: <br>
 ## GET /books
 * ### General:
     * This endpoint returns books list and their number
+    * Results are paginated in groups of 8. Include a request argument to choose page, starting from 1.
     ### Example
     ### Request: ```http://127.0.0.1:5000/books``` <br>
     ### Response:
@@ -42,3 +43,11 @@ The API will return three error type when requests: <br>
             "total_books": 1
         }
     ```
+
+    ### To get books from other pages: ``` http://127.0.0.1:5000/book?page=2 ```
+    #### /book?page=2 this endpoint returns all books from second page, if secodn page doesn't exists it will return books not found
+    
+<br>
+
+## GET /books/id
+* ### General
