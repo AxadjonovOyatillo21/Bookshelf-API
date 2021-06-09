@@ -54,7 +54,7 @@ The API will return three error type when requests: <br>
 * ### General:
     * This endpoint returns specific book
 * ### Example
-    * Requests: ``` https://127.0.0.1:/5000/books/10 - this endpoint returns book which id is 10
+    * Requests: ``` https://127.0.0.1:/5000/books/10 ``` - this endpoint returns book which id is 10
     * Response:
     ```
         {
