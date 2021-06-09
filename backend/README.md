@@ -23,11 +23,11 @@ The API will return three error type when requests: <br>
 <br>
 
 ## GET /books
-* General:
+* ### General:
     * This endpoint returns books list and their number
     ### Example
-    **Request:** ```http://127.0.0.1:5000/books``` <br>
-    **Response:**
+    ### Request: ```http://127.0.0.1:5000/books``` <br>
+    ### Response:
     ```
         {
             "books": [
