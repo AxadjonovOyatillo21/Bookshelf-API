@@ -127,7 +127,7 @@ psql bookshelf_test < books.psql
 python test_flaskr.py
 ```
 
-# API References
+# API Reference
 ## Get Started
 * Base URL: At present this app can be run locally and it hosted by default. Default local url: ` http://127.0.0.1:5000 `
 * Authentication: This version of API does not require :D
@@ -561,5 +561,5 @@ Errors are returned as JSON objects in folloving format:
                 "success": false
             }
         ```
-
-#### 2021: Akhadjonov Oyatillo
+## Author
+#### Akhadjonov Oyatillo
