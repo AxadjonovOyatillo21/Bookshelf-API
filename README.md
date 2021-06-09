@@ -169,15 +169,15 @@ Errors are returned as JSON objects in folloving format:
         }
     ```
 
-    * To get books from other pages: ` http://127.0.0.1:5000/books?page=2 `
-    ## `[GET]/book?page=2`
+    * To retrieve books from other pages, you send this request, assign the page parameter to the URL, and assign its value to the page number: ` http://127.0.0.1:5000/books?page=2 `
+    ## `GET /book?page=2`
     This endpoint returns all books from the second page, if the second page doesn't exists it will return message "books not found"
     
 <br>
 
-## [GET] /books/{book_id}
+## `GET /books/{book_id}`
 * ### General:
-    * This endpoint returns specific book
+    * Get book with id. Book id given in the URL parametres
 * ### Example
     * Requests: ` https://127.0.0.1:/5000/books/1 ` - this endpoint returns book which id is 10
     * Response:
@@ -192,7 +192,7 @@ Errors are returned as JSON objects in folloving format:
     ```
 
 * ### ⚠️ Warning
-    * If you in your request enter a book id which does not exists in database, API returns error with message books not found
+    * If  in your request give a book id which does not exists in database, API returns error with message "books not found"
     * Example:
         * Request: ` http://127.0.0.1:5000/books/121221212 `
         * Response:
@@ -204,8 +204,8 @@ Errors are returned as JSON objects in folloving format:
         ```
 ## POST /books/search
 * ### General:
-    * This endpoint returns searching resulsts
-    * You should request to this endpoint with post method. ⚠️ request body should include JSON data which includes 'search' key and value
+    * Search books via title. This endopint return all defined books as searching resulsts
+    * You should request to this endpoint with `POST` method. ⚠️ Request  should include JSON data which includes 'search' key and it value
 * ### Example:
     * Request: ` POST/ 127.0.0.1:5000/books/search `
         * Request body:
@@ -230,7 +230,7 @@ Errors are returned as JSON objects in folloving format:
             }
         ```
 * ### ⚠️ Warning
-    * If you send empty request or request which not includes important value, API responses 400 erorr with message 'bad request'
+    * If you send empty request or request which not includes important value, API returns "400" error with message "bad request"
     * Example:
         * Request: ` POST/ http://127.0.0.1:5000/books/search `
             * Request body:
@@ -254,8 +254,8 @@ Errors are returned as JSON objects in folloving format:
       
 ## POST /books
 * ### General:
-    * In this endpoint you can create a new book.
-    * You should send request with method post. Your request should include JSON data about new book
+    * Create a new book
+    * You should send request with `POST` method. Your request should include JSON data about new book
 
 
     * JSON data should include:
@@ -264,7 +264,7 @@ Errors are returned as JSON objects in folloving format:
         "title" - book title
         "rating" - book rating
     ```
-    * Then API responses data which includes:
+    * Then API reutrns data which includes:
     ```
         "books" - all books list,
         "created" - id of new book,
@@ -306,7 +306,7 @@ Errors are returned as JSON objects in folloving format:
     ```
 
 * ### ⚠️ Warning
-    * If in your request body, in JSON data not includes one of required parametres, API responses 400 error with message 'bad request'
+    * If in your request body, in JSON data not includes one of required parametres, API returns "400" error with message 'bad request'
     * Example:
         * Request ``` POST/ http://127.0.0.1:5000/books ```
             * Request body:
@@ -325,7 +325,7 @@ Errors are returned as JSON objects in folloving format:
                     "author": ""
                 }
             ``` 
-            - in this request "author" parameter empty
+            - in this request "author" parameter is empty
 
             or 
 
@@ -334,7 +334,7 @@ Errors are returned as JSON objects in folloving format:
                     "author": "author_of_book"
                 }
             ``` 
-            - "title" parameter required
+            - "title" parameter is required
 
             ⚠️ "rating" parameter is not required, by default its value equals to zero.
             If "rating" not zero, you can include rating parameter to JSON data
@@ -348,7 +348,7 @@ Errors are returned as JSON objects in folloving format:
             }
         ```
 
-    * If you enter the book_id to url, you get 405 error with message 'method not allowed'
+    * If you enter the book_id to url, API returns "405" error with message "method not allowed"
     * Example:
         * Request: ` POST/ http://127.0.0.1:5000/books/1 `
             * Request body:
@@ -372,11 +372,15 @@ Errors are returned as JSON objects in folloving format:
 
 ## PATCH /books/{book_id}
 * ### General:
-    * You can use this endpoint to update the book 
-    * You should enter of id off book in endpoint
-    * Your should send Request with method PATCH should include JSON data
-    * Or you request can be empty (if request body empty, the book will not be updated)
-    * Then API responses JSON data which includes:
+    * Update a book:
+        * Update only "title"
+        * Update only "author"
+        * Update only "rating"
+        * Update all data
+    * You should enter id of book in URL as url parameter
+    * Your should send Request with method PATCH including JSON data 
+    * Or your request can be empty (if request body empty, the book will not be updated)
+    * API responses JSON data which includes:
     ```
         "id" - the id of updated book
         "success" - True 
@@ -399,8 +403,8 @@ Errors are returned as JSON objects in folloving format:
                 "success": true
             }    
         ```
-        ⚠️ You can see updates by sending GET request to endpoint /books
-        or by sending GET request to endpoint /books/2
+        ⚠️ You can see updates by sending GET request to endpoint "/books"
+        or by sending GET request to endpoint "/books/2"
 
 
     * Update only "title"
@@ -420,8 +424,8 @@ Errors are returned as JSON objects in folloving format:
                 "success": true
             }    
         ```
-        ⚠️ You can see updates by sending GET request to endpoint /books
-        or by sending GET request to endpoint /books/2
+        ⚠️ You can see updates by sending GET request to endpoint "/books"
+        or by sending GET request to endpoint "/books/2"
 
 
     * Update only "author"
@@ -441,11 +445,11 @@ Errors are returned as JSON objects in folloving format:
                 "success": true
             }    
         ```
-        ⚠️ You can see updates by sending GET request to endpoint /books
-        or by sending GET request to endpoint /books/2
+        ⚠️ You can see updates by sending GET request to endpoint "/books"
+        or by sending GET request to endpoint "/books/2"
 
 
-    * Fully update
+    * Update all data
         * Request: ` PATCH/ http://127.0.0.1:5000/2 `
             * Request body:
             ```json
@@ -464,8 +468,8 @@ Errors are returned as JSON objects in folloving format:
                 "success": true
             }    
         ```
-        ⚠️ You can see updates by sending GET request to endpoint /books
-        or by sending GET request to endpoint /books/2
+        ⚠️ You can see updates by sending GET request to endpoint "/books"
+        or by sending GET request to endpoint "/books/2"
 
 
     * Not update:
@@ -483,11 +487,11 @@ Errors are returned as JSON objects in folloving format:
                 "success": true
             }    
         ```
-        ⚠️ You can see updates by sending GET request to endpoint /books
-        or by sending GET request to endpoint /books/2
+        ⚠️ You can see updates by sending GET request to endpoint "/books"
+        or by sending GET request to endpoint "/books/2"
 
 * ### ⚠️ Warning
-    * If you enter wrong value to parametres, for example "rating": "new_rating", "rating" parameter is Integer, and you can't enter wrong value, it raises TypeError and then API responses 400 error with message 'bad request'
+    * If you enter wrong value to parametres, for example "rating": "new_rating". "rating" parameter is"integer", so you can't give  "string" value to this parameter. If you enter wrong values, API returns "400" error with message "bad request"
     * Example 
         * Request: ``` PATCH/ http://127.0.0.1:5000/2 ```
             * Request body:
@@ -497,7 +501,7 @@ Errors are returned as JSON objects in folloving format:
                     "author": "001"
                 }
             ```
-            in here, "title" and "author" should be string not an integer
+            In here, "title" and "author" should be "string" not an "integer"
 
         * Response:
         ``` json
@@ -512,8 +516,12 @@ Errors are returned as JSON objects in folloving format:
 
 ## DELETE /books/{book_id}
 * ### General:
-    * Deletes book using id. This endpoint not requires JSON data
-    * Api responses all books list, total_books and "deleted" which value id of deleted book
+    * Delete book. You can get book via its ID, which given in URL parametres
+    * The API returns the following values to us:
+        * `"books" is a list of books`
+        * `"deleted" is the id of the deleted book`
+        * `"total_books" is the total number of books`
+
 
 * ### Example:
     * Request: ``` DELETE/ http://127.0.0.1:5000/2 ```
@@ -535,7 +543,7 @@ Errors are returned as JSON objects in folloving format:
         }
     ```
 * ### ⚠️ Warning
-    * If you enter wrong id to url parametres, API responses error with message "deleting was unseccessful
+    * If you enter wrong id to url parameters, API returns error with message "deleting was unsuccessful"
     * Example:
         * Request: `DELETE/ http://127.0.0.1:5000/1212112`
 
