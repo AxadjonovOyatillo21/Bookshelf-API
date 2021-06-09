@@ -25,18 +25,20 @@ The API will return three error type when requests: <br>
 ## GET /books
 * General:
     * This endpoint returns books list and their number
-     ### Example
-    ```
-        {
-            "books": [
-                {
-                    "author": "Keyl Nyuport",
-                    "id": 10,
-                    "rating": 1,
-                    "title": "Diqqat"
-                }
-            ],
-            "success": true,
-            "total_books": 1
-        }
-    ```
+    ### Example
+    *Request:* ```http://127.0.0.1:5000/books 
+    *Response*:
+        ```
+            {
+                "books": [
+                    {
+                        "author": "Keyl Nyuport",
+                        "id": 10,
+                        "rating": 1,
+                        "title": "Diqqat"
+                    }
+                ],
+                "success": true,
+                "total_books": 1
+            }
+        ```
