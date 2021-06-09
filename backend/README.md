@@ -15,6 +15,6 @@ Errors are returned as JSON objects in folloving format:
 ```
 
 The API will return three error type when requests: <br>
-    * 400: Bad request
-    * 404: Resource not found
-    * 405: Method now allowed
+* 400: Bad request 
+* 404: Resource not found 
+* 405: Method now allowed 
