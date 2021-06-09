@@ -414,5 +414,17 @@ The API will return three error type when requests: <br>
             "total_books": 1
         }
     ```
+* ### ⚠️ Warning
+    * If you enter wrong id to url parametres, API responses error with message "deleting was unseccessful
+    * Example:
+        * Request: `DELETE/ http://127.0.0.1:5000/1212112`
+
+        * Response:
+        ```json
+            {
+                "message": "deleting was unseccussful",
+                "success": false
+            }
+        ```
 
 #### 2021: Akhadjonov Oyatillo
