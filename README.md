@@ -127,32 +127,29 @@ python test_flaskr.py
 
 <br>
 
-
-## ⚠️ Attention ⚠️
-* In Examples we send request using postman <img src="http://cdn.auth0.com/blog/postman-integration/logo.png" alt="postman" width="21px" height="21px"> , you can do it using curl
+* We use Postman to send requests. <img src="http://cdn.auth0.com/blog/postman-integration/logo.png" alt="postman" width="21px" height="21px"> Another tool to send requests is curl.
 
 
 ## Error Handling
 Errors are returned as JSON objects in folloving format:
 ```json
     {
-        "error": 404,
-        "message": "resource not found",
+        "error": <error_code>,
+        "message": <error_message>,
         "success": false
     }
 ```
 
-The API will return three error type when requests: <br>
-* 400: Bad request 
-* 404: Resource not found 
-* 405: Method now allowed 
+The API will return three types of errors: <br>
+    * 400: Bad request 
+    * 404: Resource not found 
+    * 405: Method now allowed 
 
 ## Endpoints
-<br>
 
-## GET /books
+## `GET /books`
 * ### General:
-    * This endpoint returns books list and their number
+    * Get All books
     * Results are paginated in groups of 8. Include a request argument to choose page, starting from 1.
 * ### Example
     * Request: ` http://127.0.0.1:5000/books ` <br>
@@ -173,12 +170,12 @@ The API will return three error type when requests: <br>
     ```
 
     * To get books from other pages: ` http://127.0.0.1:5000/books?page=2 `
-    ## /book?page=2
-    This endpoint returns all books from the second page, if second page doesn't exists it will return books not found
+    ## `[GET]/book?page=2`
+    This endpoint returns all books from the second page, if the second page doesn't exists it will return message "books not found"
     
 <br>
 
-## GET /books/{book_id}
+## [GET] /books/{book_id}
 * ### General:
     * This endpoint returns specific book
 * ### Example
