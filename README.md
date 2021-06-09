@@ -17,7 +17,7 @@ The instructions below are meant for the local setup only. The classroom workspa
 ```
 * requirements.txt is a file which includes all required modules and packages for API
 
-If any exercise needs testing, navigate to the `/backend` folder and run the following commands: 
+* To run tests, navigate to the `/backend` folder and run the following commands: 
 ```bash
 psql postgres
 dropdb bookshelf_test
