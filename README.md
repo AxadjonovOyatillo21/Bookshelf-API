@@ -140,10 +140,10 @@ Errors are returned as JSON objects in folloving format:
     }
 ```
 
-The API will return three types of errors: <br>
-    * 400: Bad request 
-    * 404: Resource not found 
-    * 405: Method now allowed 
+### The API will return three types of errors: <br>
+* 400: Bad request 
+* 404: Resource not found 
+* 405: Method now allowed 
 
 ## Endpoints
 
