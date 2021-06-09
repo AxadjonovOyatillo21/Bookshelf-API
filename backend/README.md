@@ -4,6 +4,11 @@
 
 <br>
 
+
+# ⚠️ Attention ⚠️
+* In Examples we send request using postman<img src="http://cdn.auth0.com/blog/postman-integration/logo.png" alt="postman" width="21px" height="21px">, you can do it using curl
+
+
 ## Error Handling
 Errors are returned as JSON objects in folloving format:
 ```
