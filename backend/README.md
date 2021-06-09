@@ -388,13 +388,14 @@ The API will return three error type when requests: <br>
 
 ## DELETE /books/{book_id}
 * ### General:
-        * Deletes book using id. This endpoint not requires JSON data.
+        * Deletes book using id. This endpoint not requires JSON data
         * Api responses all books list, total_books and "deleted" which value id of deleted book
-* ### Example:
-        * Request: ``` DELETE/ http://127.0.0.1:5000/2 ```
+* ### Example
+        * Request: ` DELETE/ http://127.0.0.1:5000/2 `
 
         * Response:
-        ``` json
+
+        ```json
             {
                 "books": [
                     {
