@@ -77,3 +77,52 @@ The API will return three error type when requests: <br>
                 "success": false
             }
         ```
+## POST /books/search
+* ### General:
+    * This endpoint returns searching resulsts
+    * You should request to this endpoint with post method. ⚠️ request body should include JSON data which includes 'search' key and value
+* ### Example:
+    * Request: ``` POST/ 127.0.0.1:5000/books/search ``` 
+        * Request body:
+        ``` 
+            {
+                "search": "diqqat"
+            }
+        ```
+        * Response:
+        ```
+            {
+                "books": [
+                    {
+                        "author": "Keyl Nyuport",
+                        "id": 10,
+                        "rating": 1,
+                        "title": "Diqqat"
+                    }
+                ],
+                "success": true,
+                "total_books": 1
+            }
+        ```
+* ### ⚠️ Warning
+    * If you send empty request or request which not includes important value, API responses 400 erorr with message 'bad request'
+    * Example:
+        * Request: ``` POST/ http://127.0.0.1:5000/books/search ```
+            * Request body:
+            ```
+                {
+                    "uncorrect_key": "uncorrect_value"
+                }
+            ```
+            or empty request body:
+            ```
+                {}
+            ```
+            * Response:
+            ```
+                {
+                    "error": 400,
+                    "message": "bad request",
+                    "success": false
+                }
+            ```            
