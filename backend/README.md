@@ -132,3 +132,55 @@ The API will return three error type when requests: <br>
                 }
             ```      
       
+## POST /books
+* ### General:
+    * In this endpoint you can create a new book.
+    * You should send request with method post. Your request should include JSON data about new book
+    * Then API responses data which includes:
+    ```
+        "books" - all books list,
+        "created" - id of new book,
+        "success" - True,
+        "total_books" - number of all books
+    ```
+    
+    * JSON data should include:
+    ```
+        "author" - book author
+        "title" - book title
+        "rating" - book rating
+    ```
+
+* ### Example:
+    * Request: ``` POST/ http://127.0.0.1:5000/books ```
+        * Request body:
+        ```
+            {
+                "title": "The Great Alone",
+                "author": "Kristin Hannah",
+                "rating": "4"
+            }
+        ```
+    * Response:
+    ```
+        {
+            "books": [
+                {
+                    "author": "Keyl Nyuport",
+                    "id": 10,
+                    "rating": 1,
+                    "title": "Diqqat"
+                },
+                {
+                    "author": "Kristin Hannah",
+                    "id": 31,
+                    "rating": 4,
+                    "title": "The Great Alone"
+                }
+            ],
+            "created": 31,
+            "success": true,
+            "total_books": 2
+        }
+    ```
+
