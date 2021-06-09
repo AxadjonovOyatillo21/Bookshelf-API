@@ -65,3 +65,15 @@ The API will return three error type when requests: <br>
             "title": "Diqqat"
         }
     ```
+
+* ### ⚠️ Warning
+    * If you in your request enter a book id which does not exists in database, API returns error with message books not found
+    * Example:
+        * Request: ``` http://127.0.0.1:5000/books/121221212 ```
+        * Response:
+        ```
+            {
+                "message": "books not found",
+                "success": false
+            }
+        ```
