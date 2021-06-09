@@ -385,3 +385,29 @@ The API will return three error type when requests: <br>
                 "success": false
             }
         ```
+
+## DELETE /books/{book_id}
+* ### General:
+        * Deletes book using id. This endpoint not requires JSON data.
+        * Api responses all books list, total_books and "deleted" which value id of deleted book
+* ### Example:
+        * Request: ``` DELETE/ http://127.0.0.1:5000/2 ```
+
+        * Response:
+            ```
+                {
+                    "books": [
+                        {
+                            "author": "Kel Newport",
+                            "id": 1,
+                            "rating": 6,
+                            "title": "Attention"
+                        }
+                    ],
+                    "deleted": 2,
+                    "success": true,
+                    "total_books": 1
+                }
+            ```
+
+#### 2021: Akhadjonov Oyatillo
