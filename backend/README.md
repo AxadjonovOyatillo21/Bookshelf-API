@@ -1,5 +1,5 @@
 ## Get Started
-* Base URL: At present this app can be run locally and it hosted by default. Default local url: ``` http://127.0.0.1:5000 ```
+* Base URL: At present this app can be run locally and it hosted by default. Default local url: ` http://127.0.0.1:5000 `
 * Authentication: This version of API does not require api keys
 
 <br>
@@ -11,7 +11,7 @@
 
 ## Error Handling
 Errors are returned as JSON objects in folloving format:
-```
+```json
     {
         "error": 404,
         "message": "resource not found",
@@ -32,9 +32,9 @@ The API will return three error type when requests: <br>
     * This endpoint returns books list and their number
     * Results are paginated in groups of 8. Include a request argument to choose page, starting from 1.
 * ### Example
-    * Request: ```http://127.0.0.1:5000/books``` <br>
+    * Request: ` http://127.0.0.1:5000/books ` <br>
     * Response:
-    ```
+    ```json
         {
             "books": [
                 {
@@ -49,7 +49,7 @@ The API will return three error type when requests: <br>
         }
     ```
 
-    * To get books from other pages: ``` http://127.0.0.1:5000/book?page=2 ```
+    * To get books from other pages: ` http://127.0.0.1:5000/book?page=2 `
     ## /book?page=2
     This endpoint returns all books from the second page, if second page doesn't exists it will return books not found
     
@@ -59,9 +59,9 @@ The API will return three error type when requests: <br>
 * ### General:
     * This endpoint returns specific book
 * ### Example
-    * Requests: ``` https://127.0.0.1:/5000/books/1 ``` - this endpoint returns book which id is 10
+    * Requests: ` https://127.0.0.1:/5000/books/1 ` - this endpoint returns book which id is 10
     * Response:
-    ```
+    ```json
         {
             "author": "Kel Newport",
             "id": 1,
@@ -74,9 +74,9 @@ The API will return three error type when requests: <br>
 * ### ⚠️ Warning
     * If you in your request enter a book id which does not exists in database, API returns error with message books not found
     * Example:
-        * Request: ``` http://127.0.0.1:5000/books/121221212 ```
+        * Request: ` http://127.0.0.1:5000/books/121221212 `
         * Response:
-        ```
+        ```json
             {
                 "message": "books not found",
                 "success": false
@@ -87,15 +87,15 @@ The API will return three error type when requests: <br>
     * This endpoint returns searching resulsts
     * You should request to this endpoint with post method. ⚠️ request body should include JSON data which includes 'search' key and value
 * ### Example:
-    * Request: ``` POST/ 127.0.0.1:5000/books/search ``` 
+    * Request: ` POST/ 127.0.0.1:5000/books/search `
         * Request body:
-        ``` 
+        ``` json
             {
                 "search": "attention"
             }
         ```
         * Response:
-        ```
+        ```json
             {
                 "books": [
                     {
@@ -112,19 +112,19 @@ The API will return three error type when requests: <br>
 * ### ⚠️ Warning
     * If you send empty request or request which not includes important value, API responses 400 erorr with message 'bad request'
     * Example:
-        * Request: ``` POST/ http://127.0.0.1:5000/books/search ```
+        * Request: ` POST/ http://127.0.0.1:5000/books/search `
             * Request body:
-            ```
+            ```json
                 {
                     "uncorrect_key": "uncorrect_value"
                 }
             ```
             or empty request body:
-            ```
+            ```json
                 {}
             ```
             * Response:
-            ```
+            ```json
                 {
                     "error": 400,
                     "message": "bad request",
@@ -154,9 +154,9 @@ The API will return three error type when requests: <br>
 
 
 * ### Example:
-    * Request: ``` POST/ http://127.0.0.1:5000/books ```
+    * Request: ` POST/ http://127.0.0.1:5000/books `
         * Request body:
-        ```
+        ```json
             {
                 "title": "The Great Alone",
                 "author": "Kristin Hannah",
@@ -164,7 +164,7 @@ The API will return three error type when requests: <br>
             }
         ```
     * Response:
-    ```
+    ```json
         {
             "books": [
                 {
@@ -190,7 +190,7 @@ The API will return three error type when requests: <br>
     * Example:
         * Request ``` POST/ http://127.0.0.1:5000/books ```
             * Request body:
-            ```
+            ```json
                 {
                     "title": "no_title"
                 }
@@ -199,7 +199,7 @@ The API will return three error type when requests: <br>
 
             or
 
-            ```
+            ```json
                 {
                     "title": "title_of_book",
                     "author": ""
@@ -209,7 +209,7 @@ The API will return three error type when requests: <br>
 
             or 
 
-            ```
+            ```json
                 {
                     "author": "author_of_book"
                 }
@@ -220,7 +220,7 @@ The API will return three error type when requests: <br>
             If "rating" not zero, you can include rating parameter to JSON data
 
         * Response:
-        ```
+        ```json
             {
                 "error": 400,
                 "message": "bad request",
@@ -230,9 +230,9 @@ The API will return three error type when requests: <br>
 
     * If you enter the book_id to url, you get 405 error with message 'method not allowed'
     * Example:
-        * Request: ``` POST/ http://127.0.0.1:5000/books/1 ```
+        * Request: ` POST/ http://127.0.0.1:5000/books/1 `
             * Request body:
-            ```
+            ```json
                 {
                     "title": "The Great Alone",
                     "author": "Kristin Hannah",
@@ -240,7 +240,7 @@ The API will return three error type when requests: <br>
                 }
             ```
         * Response:
-        ```
+        ```json
             {
                 "error": 405,
                 "message": "method not allowed",
@@ -261,9 +261,9 @@ The API will return three error type when requests: <br>
     ```
 * ### Example:
     * Update only "rating"
-        * Request: ``` PATCH/ http://127.0.0.1:5000/2 ```
+        * Request: ` PATCH/ http://127.0.0.1:5000/2 `
             * Request body:
-            ```
+            ```json
                 {
                     "rating": "1"
                 }
@@ -271,7 +271,7 @@ The API will return three error type when requests: <br>
             updates "rating" of the book which id 2
 
         * Response:
-        ```
+        ```json
             {
                 "id": 2,
                 "success": true
@@ -282,9 +282,9 @@ The API will return three error type when requests: <br>
 
 
     * Update only "title"
-        * Request: ``` PATCH/ http://127.0.0.1:5000/2 ```
+        * Request: ` PATCH/ http://127.0.0.1:5000/2 `
             * Request body:
-            ```
+            ```json
                 {
                     "title": "New title"
                 }
@@ -292,7 +292,7 @@ The API will return three error type when requests: <br>
             updates "title" of the book which id 2
 
         * Response:
-        ```
+        ```json
             {
                 "id": 2,
                 "success": true
@@ -303,9 +303,9 @@ The API will return three error type when requests: <br>
 
 
     * Update only "author"
-        * Request: ``` PATCH/ http://127.0.0.1:5000/2 ```
+        * Request: ` PATCH/ http://127.0.0.1:5000/2 `
             * Request body:
-            ```
+            ```json
                 {
                     "title": "New author"
                 }
@@ -313,7 +313,7 @@ The API will return three error type when requests: <br>
             updates "author" of the book which id 2
 
         * Response:
-        ```
+        ```json
             {
                 "id": 2,
                 "success": true
@@ -324,9 +324,9 @@ The API will return three error type when requests: <br>
 
 
     * Fully update
-        * Request: ``` PATCH/ http://127.0.0.1:5000/2 ```
+        * Request: ` PATCH/ http://127.0.0.1:5000/2 `
             * Request body:
-            ```
+            ```json
                 {
                     "title": "New title",
                     "author": "New author",
@@ -336,7 +336,7 @@ The API will return three error type when requests: <br>
             fully updates the book which id 2
 
         * Response:
-        ```
+        ```json
             {
                 "id": 2,
                 "success": true
@@ -349,13 +349,13 @@ The API will return three error type when requests: <br>
     * Not update:
         * Request: ``` PATCH/ http://127.0.0.1:5000/2 ```
             * Request body:
-            ```
+            ```json
                 {}
             ```
             not updates the book with id 2
 
         * Response:
-        ```
+        ```json
             {
                 "id": 2,
                 "success": true
@@ -369,7 +369,7 @@ The API will return three error type when requests: <br>
     * Example 
         * Request: ``` PATCH/ http://127.0.0.1:5000/2 ```
             * Request body:
-            ```
+            ```json
                 {
                     "title": "123",
                     "author": "001"
@@ -378,7 +378,7 @@ The API will return three error type when requests: <br>
             in here, "title" and "author" should be string not an integer
 
         * Response:
-        ```
+        ``` json
             {
                 "error": 400,
                 "message": "bad request",
@@ -394,20 +394,20 @@ The API will return three error type when requests: <br>
         * Request: ``` DELETE/ http://127.0.0.1:5000/2 ```
 
         * Response:
-            ```
-                {
-                    "books": [
-                        {
-                            "author": "Kel Newport",
-                            "id": 1,
-                            "rating": 6,
-                            "title": "Attention"
-                        }
-                    ],
-                    "deleted": 2,
-                    "success": true,
-                    "total_books": 1
-                }
-            ```
+        ``` json
+            {
+                "books": [
+                    {
+                        "author": "Kel Newport",
+                        "id": 1,
+                        "rating": 6,
+                        "title": "Attention"
+                    }
+                ],
+                "deleted": 2,
+                "success": true,
+                "total_books": 1
+            }
+        ```
 
 #### 2021: Akhadjonov Oyatillo
