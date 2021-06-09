@@ -3,21 +3,50 @@
 This project is a virtual bookshelf for Udacity students. Students are able to add books to the booksehlf, give them rating, update the rating and search through their book lists. 
 As a part of the FullStack Nanodegree, it servec as a practice module for lessaons: API Development and Documentation. By building this project, students learn and develop their skills structuring and implementing formatted API endpoints, that leverage knowledge of HTTP and API best practices. 
 
+
+All backend code follows [PEP8 style guidelines](https://www.python.org/dev/peps/pep-0008/). 
+
 # Getting Started
 
 ## Local Development 
 The instructions below are meant for the local setup only. The classroom workspace is already set for your to start practicing. 
 
+## Backend
+
 #### Pre-requisites
 * Developers using this project should already have Python3, pip and node installed on their local machines.
 ## Install requirements
-* To install all reuirements, navigate to the `/backend` folder and run the folllowing command:
+To install all reuirements, navigate to the `/backend` folder and run the folllowing command:
 ```bash
     pip install -r requirements.txt
 ```
-* requirements.txt is a file which includes all required modules and packages for API
+requirements.txt is a file which includes all required modules and packages for API
 
-* To run tests, navigate to the `/backend` folder and run the following commands: 
+Then to run application run the following commands:
+```bash
+    export FLASK_APP=flaskr
+    export FLASK_ENV=development
+    flask run
+```
+These commands put the application in development and directs our application to use `__init__.py` file in our flaskr folder. Wroking in development mode shows an interactive debugger in the console and restarts the server whenever changes are made.
+If you use Window, look for the commands in the [Flask documentation](http://flask.pocoo.org/docs/1.0/tutorial/factory/).
+
+The applcation by default runs on `http://127.0.0.1:5000/`.
+
+
+
+## FrontEnd
+
+From the `frontend` folder, run the following commands to start the client:
+```
+    npm install // install all requirements
+    npm start
+```
+By default, the frontend will run on localhost:3000.
+
+
+## Tests
+In order to run tests, navigate to the `/backend` folder and run the following commands: 
 ```bash
 psql postgres
 dropdb bookshelf_test
@@ -27,8 +56,10 @@ psql bookshelf_test < books.psql
 python test_flaskr.py
 ```
 
+
 # API Reference
-## Get Started
+
+## Getting Started
 * Base URL: At present this app can be run locally and it hosted by default. Default local url: ` http://127.0.0.1:5000 `
 * Authentication: This version of API does not require :D
 
