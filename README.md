@@ -1,6 +1,6 @@
 # The Great Bookshelf of Udacity
 
-This project is a virtual bookshelf for Udacity students. Students are able to add books to the booksehlf, give them rating, update the rating and search through their book lists. 
+This project is a virtual bookshelf for Udacity students. Students are able to add books to the bookshelf, give them rating, update the rating and search through their book lists. 
 As a part of the FullStack Nanodegree, it servec as a practice module for lessaons: API Development and Documentation. By building this project, students learn and develop their skills structuring and implementing formatted API endpoints, that leverage knowledge of HTTP and API best practices. 
 
 
